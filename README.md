@@ -1,12 +1,3 @@
----
-tags:
-- cloud
-- weather
-- cloud genera
-- cloud types
-- wmo
-- cloud image classification
----
 # Genera - Cloud Image Classification Model
 
 **Version:** 1.0.0
@@ -70,16 +61,18 @@ The model was trained on the **UGCI (Ultimate Ground-level Cloud Image) dataset*
 
 ## You can install necessary packages using pip:
 
--- pip install tensorflow numpy Pillow
+     pip install tensorflow numpy Pillow
 
 ## Loading the Model
 
 The model is saved in the Keras native format (.keras). You will need to provide the definitions of the custom layers (RepVGGBlock and NECALayer) when loading.
 
-# IMPORTANT: You must have the RepVGGBlock and NECALayer class definitions available in your Python environment before running this.
+**IMPORTANT: You must have the RepVGGBlock and NECALayer class definitions available in your Python environment before running this.**
 
-# --- CUSTOM LAYER DEFINITIONS ---
-# --- RepVGGBlock Class Definition ---
+**--- CUSTOM LAYER DEFINITIONS ---**
+
+
+**--- RepVGGBlock Class Definition ---**
 
 
        
@@ -201,9 +194,9 @@ The model is saved in the Keras native format (.keras). You will need to provide
         return config
     @classmethod
     def from_config(cls, config): return cls(**config)
-# --- End of RepVGGBlock ---
+**--- End of RepVGGBlock ---**
 
-# --- NECALayer Class Definition ---
+**--- NECALayer Class Definition ---**
 
     class NECALayer(layers.Layer):
     def __init__(self, channels, gamma=2, b=1, **kwargs):
@@ -240,36 +233,39 @@ The model is saved in the Keras native format (.keras). You will need to provide
     @classmethod
     def from_config(cls, config): return cls(**config)
     
-# --- End of NECALayer ---
-# --- END OF CUSTOM LAYER DEFINITIONS ---
+**--- End of NECALayer ---**
 
-import tensorflow as tf
-from tensorflow import keras
 
-MODEL_FILE = 'path/to/your/repvgg_neca_deploy_final.keras' # Replace with actual path
-LABEL_MAPPING_FILE = 'path/to/your/label_mapping.json' # Replace with actual path
+**--- END OF CUSTOM LAYER DEFINITIONS ---**
 
-custom_objects = {'RepVGGBlock': RepVGGBlock, 'NECALayer': NECALayer}
-loaded_model = tf.keras.models.load_model(MODEL_FILE, custom_objects=custom_objects, compile=False)
-print("Model loaded successfully!")
-loaded_model.summary() # Optional: to see the loaded architecture
+    import tensorflow as tf
+    from tensorflow import keras
+    
+    MODEL_FILE = 'path/to/your/repvgg_neca_deploy_final.keras' # Replace with actual path
+    LABEL_MAPPING_FILE = 'path/to/your/label_mapping.json' # Replace with actual path
+    
+    custom_objects = {'RepVGGBlock': RepVGGBlock, 'NECALayer': NECALayer}
+    loaded_model = tf.keras.models.load_model(MODEL_FILE, custom_objects=custom_objects, compile=False)
+    print("Model loaded successfully!")
+    loaded_model.summary() # Optional: to see the loaded architecture
 
 # Load label mapping
-import json
-with open(LABEL_MAPPING_FILE, 'r') as f:
-    label_map_data = json.load(f)
-int_to_label = {int(k): v for k, v in label_map_data['int_to_label'].items()}
+    import json
+    with open(LABEL_MAPPING_FILE, 'r') as f:
+        label_map_data = json.load(f)
+    int_to_label = {int(k): v for k, v in label_map_data['int_to_label'].items()}
 
 **Making Predictions**
-from PIL import Image
-import numpy as np
-
-def preprocess_image_for_prediction(image_path_or_pil_image, target_size=(299, 299)):
-    if isinstance(image_path_or_pil_image, str):
-        img = Image.open(image_path_or_pil_image)
-    else: # Assuming PIL image
-        img = image_path_or_pil_image
+        
+    from PIL import Image    
+    import numpy as np
     
+    def preprocess_image_for_prediction(image_path_or_pil_image, target_size=(299, 299)):
+        if isinstance(image_path_or_pil_image, str):
+            img = Image.open(image_path_or_pil_image)
+        else: # Assuming PIL image
+            img = image_path_or_pil_image
+        
     img = img.convert('RGB') # Ensure 3 channels
     img = img.resize(target_size)
     img_array = np.array(img, dtype=np.float32)
@@ -277,24 +273,24 @@ def preprocess_image_for_prediction(image_path_or_pil_image, target_size=(299, 2
     img_array = np.expand_dims(img_array, axis=0) # Add batch dimension
     return img_array
 
-# Example prediction:
-image_path = 'path/to/your/cloud_image.jpg' # Replace with your image path
-input_tensor = preprocess_image_for_prediction(image_path)
-predictions = loaded_model.predict(input_tensor)
-predicted_probabilities = predictions[0]
-
-# Get top prediction
-predicted_class_index = np.argmax(predicted_probabilities)
-predicted_class_name = int_to_label.get(predicted_class_index, "Unknown Class")
-confidence = predicted_probabilities[predicted_class_index]
-
-print(f"Predicted Cloud Type: {predicted_class_name}")
-print(f"Confidence: {confidence*100:.2f}%")
-
-# Display all class probabilities (optional)
- for i, prob in enumerate(predicted_probabilities):
-     class_name = int_to_label.get(i, f"Class_{i}")
-     print(f"- {class_name}: {prob*100:.2f}%")
+    # Example prediction:
+    image_path = 'path/to/your/cloud_image.jpg' # Replace with your image path
+    input_tensor = preprocess_image_for_prediction(image_path)
+    predictions = loaded_model.predict(input_tensor)
+    predicted_probabilities = predictions[0]
+    
+    # Get top prediction
+    predicted_class_index = np.argmax(predicted_probabilities)
+    predicted_class_name = int_to_label.get(predicted_class_index, "Unknown Class")
+    confidence = predicted_probabilities[predicted_class_index]
+    
+    print(f"Predicted Cloud Type: {predicted_class_name}")
+    print(f"Confidence: {confidence*100:.2f}%")
+    
+    # Display all class probabilities (optional)
+     for i, prob in enumerate(predicted_probabilities):
+         class_name = int_to_label.get(i, f"Class_{i}")
+         print(f"- {class_name}: {prob*100:.2f}%")
 
 ## 4. Training Procedure
 Dataset: UGCI
@@ -471,3 +467,13 @@ This project, including the model weights and source code, is licensed under the
 ## 11. Acknowledgements
 
 This work was inspired by the methodologies presented in "Improved RepVGG ground-based cloud image classification with attention convolution" by Shi et al. (2024).
+
+---
+tags:
+- cloud
+- weather
+- cloud genera
+- cloud types
+- wmo
+- cloud image classification
+---
