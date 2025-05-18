@@ -345,6 +345,8 @@ Random Contrast adjustments (factor 0.3)
 
 Framework: TensorFlow/Keras
 
+Compute - Nvidia A100 GPU (Google Colab)
+
 Optimizer: AdamW (learning_rate=1e-4, weight_decay=5e-5)
 
 Loss Function: Sparse Categorical Crossentropy
@@ -359,7 +361,7 @@ EarlyStopping (monitoring val_loss, patience 20, restore_best_weights=True)
 
 ReduceLROnPlateau (monitoring val_loss, patience 10)
 
-Epochs: Trained for up to 150 epochs (EarlyStopping intervened). The best model was restored from Epoch 171 of the final run (adjust if different).
+Epochs: Trained for 200 epochs (~7 hours) (EarlyStopping intervened). The best model was restored from Epoch 171 of the final run.
 
 Batch Size: 32
 
@@ -458,7 +460,7 @@ Continued refinement of minority class performance (contrail).
 
 If you use this model or code in your research, please consider citing this repository (and any associated paper, if applicable).
 
-Mohammed Numan Mubarak. (2025). Genera - Cloud Image Classification Model. Retrieved from [huggingface.co/mubaraknumann/genera-cloud-image-classification]
+Mohammed Numan Mubarak. (2025). Genera - Cloud Image Classification Model. Retrieved from [github.com/mubaraknumann/genera-cloud-image-classification]
 
 ## 10. License
 
