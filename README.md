@@ -1,6 +1,4 @@
 ---
-license: mit
-pipeline_tag: image-classification
 tags:
 - cloud
 - weather
@@ -78,12 +76,14 @@ The model was trained on the **UGCI (Ultimate Ground-level Cloud Image) dataset*
 
 The model is saved in the Keras native format (.keras). You will need to provide the definitions of the custom layers (RepVGGBlock and NECALayer) when loading.
 
-# IMPORTANT: You must have the RepVGGBlock and NECALayer class definitions
-# available in your Python environment before running this.
+# IMPORTANT: You must have the RepVGGBlock and NECALayer class definitions available in your Python environment before running this.
 
 # --- CUSTOM LAYER DEFINITIONS ---
 # --- RepVGGBlock Class Definition ---
-class RepVGGBlock(layers.Layer):
+
+
+       
+        class RepVGGBlock(layers.Layer):
     def __init__(self, in_channels, out_channels, kernel_size=3, stride=1,
                  groups=1, deploy=False, use_se=False, **kwargs):
         super(RepVGGBlock, self).__init__(**kwargs)
@@ -95,7 +95,7 @@ class RepVGGBlock(layers.Layer):
         self._deploy_mode_internal = deploy
         self.config_use_se = use_se # Placeholder, not used in this version of RepVGGBlock
         self.actual_in_channels = None
-
+        
         self.rbr_dense_conv = layers.Conv2D(
             filters=self.config_out_channels, kernel_size=self.config_kernel_size,
             strides=self.config_strides_val, padding='same',
@@ -204,7 +204,8 @@ class RepVGGBlock(layers.Layer):
 # --- End of RepVGGBlock ---
 
 # --- NECALayer Class Definition ---
-class NECALayer(layers.Layer):
+
+    class NECALayer(layers.Layer):
     def __init__(self, channels, gamma=2, b=1, **kwargs):
         super(NECALayer, self).__init__(**kwargs)
         self.channels = channels
@@ -220,7 +221,7 @@ class NECALayer(layers.Layer):
         self.gap = layers.GlobalAveragePooling2D(keepdims=True)
         self.conv1d = layers.Conv1D(filters=1, kernel_size=kernel_size_for_conv1d, padding='same', use_bias=False, name=self.name + '_eca_conv1d')
         self.sigmoid = layers.Activation('sigmoid')
-
+        
     def call(self, inputs):
         if self.channels != inputs.shape[-1]: raise ValueError(f"Input channels {inputs.shape[-1]} != layer channels {self.channels} for {self.name}")
         x = self.gap(inputs)
@@ -238,6 +239,7 @@ class NECALayer(layers.Layer):
         return config
     @classmethod
     def from_config(cls, config): return cls(**config)
+    
 # --- End of NECALayer ---
 # --- END OF CUSTOM LAYER DEFINITIONS ---
 
