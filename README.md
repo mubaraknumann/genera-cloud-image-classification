@@ -4,6 +4,19 @@
 **Last Updated:** May 18 2025
 **Contact:** [numanmubarak@protonmail.com][Github - https://github.com/mubaraknumann]
 
+
+![image/png](https://cdn-uploads.huggingface.co/production/uploads/68299aa8c18ecd32686e7e9e/Rvn7T_GrJcWV442_CifE3.png)
+
+
+
+![image/png](https://cdn-uploads.huggingface.co/production/uploads/68299aa8c18ecd32686e7e9e/rKJe1H-KK6fe6Ef4X7iNJ.png)
+
+
+
+![image/png](https://cdn-uploads.huggingface.co/production/uploads/68299aa8c18ecd32686e7e9e/-nNvaMZyAGdqLbGIZHQph.png)
+
+    You can use the attached streamlit code to test the model using GUI
+
 ## Table of Contents
 1. [Model Description](#model-description)
 2. [Intended Uses & Limitations](#intended-uses--limitations)
@@ -12,7 +25,7 @@
     - [Loading the Model](#loading-the-model)
     - [Making Predictions](#making-predictions)
 4. [Training Procedure](#training-procedure)
-    - [Dataset: SkyGen](#dataset-skygen)
+    - [Dataset: UGCI](#dataset-UGCI)
     - [Architecture: RepVGG with NECA Attention](#architecture-repvgg-with-neca-attention)
     - [Data Preprocessing & Augmentation](#data-preprocessing--augmentation)
     - [Training Details](#training-details)
@@ -301,9 +314,7 @@ Total Images (after expansion): ~32,742 images (Train: 22,918, Val: 4,912, Test:
 
 Classes (12): Altocumulus, Altostratus, Cirrocumulus, Cirrostratus, Cirrus, Clear Sky, Contrail, Cumulonimbus, Cumulus, Nimbostratus, Stratocumulus, Stratus.
 
-**Image Characteristics:** [Briefly describe: e.g., "Images were captured using various mobile and stationary cameras, representing diverse lighting conditions and geographical locations, primarily focusing on full-sky or wide-angle views."]
-
-**Labeling Process:** [Briefly describe: e.g., "Images were manually labeled by meteorological enthusiasts/experts."]
+**Image Characteristics:** Images were captured using various mobile and stationary cameras, representing diverse lighting conditions and geographical locations, primarily focusing on full-sky or wide-angle views.
 
 **Data Splitting:** Stratified 70% training, 15% validation, 15% testing.
 
