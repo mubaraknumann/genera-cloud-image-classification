@@ -17,7 +17,14 @@ Download the model from HuggingFace - https://huggingface.co/mubaraknumann/gener
 
 ![image/png](https://cdn-uploads.huggingface.co/production/uploads/68299aa8c18ecd32686e7e9e/-nNvaMZyAGdqLbGIZHQph.png)
 
-    You can use the attached streamlit code to test the model using GUI
+        You can use the attached streamlit code to test the model using GUI.
+      Steps - 
+        1. Place Files: Put the model.keras and label_mapping.json in the same directory as test_model_streamlit.py.
+        2. Install Libraries:
+                  pip install streamlit tensorflow numpy Pillow
+        3. Execute the .py file or run from Terminal:
+                  streamlit run test_model_streamlit.py
+
 
 ## Table of Contents
 1. [Model Description](#model-description)
