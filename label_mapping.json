@@ -1,0 +1,30 @@
+{
+    "label_to_int": {
+        "Altocumulus": 0,
+        "Altostratus": 1,
+        "Cirrocumulus": 2,
+        "Cirrostratus": 3,
+        "Cirrus": 4,
+        "Clear Sky": 5,
+        "Contrail": 6,
+        "Cumulonimbus": 7,
+        "Cumulus": 8,
+        "Nimbostratus": 9,
+        "Stratocumulus": 10,
+        "Stratus": 11
+    },
+    "int_to_label": {
+        "0": "Altocumulus",
+        "1": "Altostratus",
+        "2": "Cirrocumulus",
+        "3": "Cirrostratus",
+        "4": "Cirrus",
+        "5": "Clear Sky",
+        "6": "Contrail",
+        "7": "Cumulonimbus",
+        "8": "Cumulus",
+        "9": "Nimbostratus",
+        "10": "Stratocumulus",
+        "11": "Stratus"
+    }
+}
