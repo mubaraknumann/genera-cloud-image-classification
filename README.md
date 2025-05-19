@@ -4,6 +4,8 @@
 **Last Updated:** May 18 2025
 **Contact:** [numanmubarak@protonmail.com][Github - https://github.com/mubaraknumann]
 
+Download the model from HuggingFace - https://huggingface.co/mubaraknumann/genera-cloud-image-classification
+
 
 ![image/png](https://cdn-uploads.huggingface.co/production/uploads/68299aa8c18ecd32686e7e9e/Rvn7T_GrJcWV442_CifE3.png)
 
